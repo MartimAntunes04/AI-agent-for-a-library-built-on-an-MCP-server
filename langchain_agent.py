@@ -27,7 +27,7 @@ if not GOOGLE_API_KEY:
     raise ValueError("GOOGLE_API_KEY not found in .env file.")
 
 #LLM
-llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview",google_api_key=GOOGLE_API_KEY)
+llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite-preview",google_api_key=GOOGLE_API_KEY)
 
 
 # ── MEMORY (persists across requests for the same thread_id) ──────────────────
