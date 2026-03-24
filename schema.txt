@@ -1,0 +1,32 @@
+DATABASE SCHEMA - LIBRARY SYSTEM
+
+Table: book
+Columns:
+    -id: Integer (Primary Key)
+    -title: String (Required)
+    -author: String (Required)
+    -year: Integer (Required)
+    -owner_id: Integer | Foreign Key -> member.id (Opcional: if the book is available in the library).
+    
+    Relationship
+    - owner: Many-to-One relationship with the member entity. (Multiple books can be held by one member).
+
+Table: member
+    - id: Integer (Primary)
+    - name: String (Required)
+    - email: String (Required)
+    
+    Relationship
+    - borrowed_books: One-to-Many relationship with the book entity. (A list of all books currently in the possession of this member).
+    
+
+Business Rules:
+- Temporal Constraint: The system must reject any book entry with a publication year greater than 2026.
+- Borrowing Limit: A single member cannot hold more than 3 books at the same time. Any attempt to borrow a 4th book must be rejected.
+- Availability Status:
+    - A book is "Available" if owner_id is NULL.
+    - A book is "Borrow" if owner_id contains a valid member.id.
+-Data Integrity:
+    - The email field must be unique across the member table to prevent duplicate registrations.
+    - A member cannot be deleted if they currently have books assigned to them (owner_id is not null).
+
