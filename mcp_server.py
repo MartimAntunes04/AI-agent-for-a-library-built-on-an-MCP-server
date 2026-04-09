@@ -223,7 +223,7 @@ def return_book(member_id: int, book_id: int) -> str:
 @mcp.resource("library://schema")
 def get_schema() -> str:
     """Read the database schema and business rules."""
-    path = "schema.txt" # Caminho relativo é mais seguro!
+    path = "schema.txt" 
     with open(path, "r", encoding="utf-8") as f:
         return f.read()
     

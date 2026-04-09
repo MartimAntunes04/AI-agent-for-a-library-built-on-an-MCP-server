@@ -7,7 +7,7 @@ from models import Book, Member
 #Standard Add (Input: int, Output: Book Object)
 def add_book(title:str, author:str, year:int):
     if year > 2026:
-        raise ValueError(f"CRITICAL ERROR: Publication year {year} is beyond the 2026 limit. Operation aborted.")
+        raise ValueError("BUSINESS RULE VIOLATION: Books from the future (post-2026) are not allowed.")
     
     with Session(engine) as session:
         book = Book(title=title, author=author, year=year)
